@@ -23,7 +23,7 @@ onMounted(() => {
     <!--    三方开放平台 -->
     <el-row :gutter="20">
       <el-col :span="3" v-for="item in platformList" class="mb-4 ">
-        <el-card class="cursor-pointer hover:shadow-lg transition ease-in-out duration-300">
+        <el-card class="cursor-pointer hover:shadow-lg transition ease-in-out duration-300 hover:text-blue-500 hover:bg-blue-100">
           <template #header>
             <div class="card-header flex items-center ">
               <el-image style="width: 24px; height: 24px"
@@ -32,7 +32,10 @@ onMounted(() => {
               <span class="ml-2 text-clamp font-semibold">{{ item.name }}</span>
             </div>
           </template>
-          <div class="text item">{{ item.since }}</div>
+          <div class="text item">
+            <span>{{ item.since }}</span>
+            <span class="ml-2 text-red-500 font-semibold" v-if="item.isLatest">new</span>
+          </div>
         </el-card>
       </el-col>
     </el-row>
