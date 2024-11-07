@@ -17,17 +17,16 @@ const menus = [
   <el-header class="shadow">
     <el-row class="w-full h-full" :gutter="20">
       <el-col :span="4">
-        <div class="grid-content ep-bg-purple"/>
         logo
       </el-col>
       <el-col :span="16">
-        <div class="grid-content ep-bg-purple">
-
-        menu
+        <div class="w-full h-full flex ">
+          <div class="flex items-center" v-for="item in menus">
+            <router-link :to="item.link">{{ item.name }}</router-link>
+          </div>
         </div>
       </el-col>
       <el-col :span="4">
-        <div class="grid-content ep-bg-purple"/>
         login-user
       </el-col>
     </el-row>

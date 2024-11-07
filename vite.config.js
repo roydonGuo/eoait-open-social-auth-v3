@@ -2,10 +2,14 @@ import {defineConfig} from 'vite'
 import vue from '@vitejs/plugin-vue'
 import {fileURLToPath, URL} from 'node:url'
 import {viteMockServe} from "vite-plugin-mock";
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [vue(),
+    plugins: [
+        vue(),
         // mock 数据的 dev环境
         viteMockServe({
             // supportTs: true, // 是否开启支持ts
@@ -14,6 +18,12 @@ export default defineConfig({
             prodEnabled: false, // 设置是否启用生产环境的mock服务
             watchFiles: true, // 是否监视文件更改
             logger: true  //是否在控制台显示请求日志
+        }),
+        AutoImport({
+            resolvers: [ElementPlusResolver()],
+        }),
+        Components({
+            resolvers: [ElementPlusResolver()],
         }),
     ],
     resolve: {
