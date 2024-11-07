@@ -1,5 +1,9 @@
-import axios from 'axios';
+import request from './request';
 
 export const openAuth = () => {
-    return axios.get('/open/auth')
+    return request.get('/open/auth')
+}
+
+export const openAuthPlatformList = () => {
+    return request.get('/oauth/openAuthPlatformList')
 }

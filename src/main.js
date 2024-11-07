@@ -5,13 +5,13 @@ import App from './App.vue'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import "./styles/element/index.scss";
-import zhLocale from 'element-plus/es/locale/lang/zh-cn'
+import zhLocale from 'element-plus/es/locale/lang/zh-cn.mjs'
 
 import "./tailwind.css";
 
 import router from '@/router/index'
 
-import '@/api/interceptor'
+// import '@/api/interceptor'
 
 const app = createApp(App)
 

@@ -1,13 +1,17 @@
 import axios from 'axios'
 import {ElMessage, ElMessageBox} from "element-plus";
 
-if (import.meta.env.VITE_API_BASE_URL) {
-    axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
-    axios.defaults.timeout = 20000
-}
+// if (import.meta.env.VITE_API_BASE_URL) {
+//     axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
+//     axios.defaults.timeout = 20000
+// }
+const instance = axios.create({
+    baseURL: import.meta.env.VITE_API_BASE_URL,
+    timeout: 10000 // request timeout
+})
 
 // 添加请求拦截器
-axios.interceptors.request.use(config => {
+instance.interceptors.request.use(config => {
     // const token = getToken()
     // if (token) {
     //     config.headers.Authorization = 'Bearer ' + token
@@ -20,15 +24,16 @@ axios.interceptors.request.use(config => {
 let loginDialog = true
 
 // 添加响应拦截器
-axios.interceptors.response.use(res => {
+instance.interceptors.response.use(res => {
     // 未设置状态码则默认成功状态
     const code = res.data.code
+    ElMessage.error(res)
     // 获取错误信息
     // const msg = errorCode[code] || res.data.msg || errorCode['default']
     // 二进制数据则直接返回
-    // if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer') {
-    //     return res.data
-    // }
+    if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer') {
+        return res.data
+    }
     // 未认证
     if (code === 401) {
         // 展示重新登陆逻辑
@@ -47,7 +52,7 @@ axios.interceptors.response.use(res => {
         ElMessage.error("系统错误")
         return Promise.reject(new Error("系统错误"))
     } else if (code !== 200) {
-        ElMessage.error("系统错误")
+        ElMessage.error("业务异常")
         return Promise.reject('error')
     } else {
         return res.data
@@ -56,4 +61,4 @@ axios.interceptors.response.use(res => {
     return Promise.reject(error);
 });
 
-export default axios
+export default instance;
