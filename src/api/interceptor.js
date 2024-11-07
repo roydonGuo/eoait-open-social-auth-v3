@@ -11,7 +11,7 @@ const instance = axios.create({
 })
 
 // 添加请求拦截器
-instance.interceptors.request.use(function (config) {
+instance.interceptors.request.use(config => {
     // const token = getToken()
     // if (token) {
     //     config.headers.Authorization = 'Bearer ' + token
@@ -19,7 +19,7 @@ instance.interceptors.request.use(function (config) {
 
     config.headers.Authorization = 'Bearer ' + "111"
 
-    return config;
+    return config
 }, error => {
     return Promise.reject(error);
 });
@@ -27,11 +27,9 @@ instance.interceptors.request.use(function (config) {
 let loginDialog = true
 
 // 添加响应拦截器
-instance.interceptors.response.use(function (res) {
+instance.interceptors.response.use(res => {
     // 未设置状态码则默认成功状态
     const code = res.data.code
-    // ElMessage.error(code)
-    console.log(res.data.data)
     // 获取错误信息
     // const msg = errorCode[code] || res.data.msg || errorCode['default']
     // 二进制数据则直接返回
@@ -59,10 +57,10 @@ instance.interceptors.response.use(function (res) {
         ElMessage.error("业务异常")
         return Promise.reject('error')
     } else {
-        return res.data
+        return res
     }
 }, function (error) {
-    return Promise.reject(error);
+    return Promise.reject(error)
 });
 
 export default instance;
