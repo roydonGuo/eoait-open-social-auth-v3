@@ -44,10 +44,10 @@ axios.interceptors.response.use(res => {
             return Promise.reject('请重新登录。')
         }
     } else if (code === 500) {
-        ElMessage.error(msg)
-        return Promise.reject(new Error(msg))
+        ElMessage.error("系统错误")
+        return Promise.reject(new Error("系统错误"))
     } else if (code !== 200) {
-        ElMessage.error(msg)
+        ElMessage.error("系统错误")
         return Promise.reject('error')
     } else {
         return res.data
