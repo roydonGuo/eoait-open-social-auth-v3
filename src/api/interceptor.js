@@ -1,4 +1,5 @@
 import axios from 'axios'
+import {ElMessage, ElMessageBox} from "element-plus";
 
 if (import.meta.env.VITE_API_BASE_URL) {
     axios.defaults.baseURL = import.meta.env.VITE_API_BASE_URL;
@@ -31,22 +32,22 @@ axios.interceptors.response.use(res => {
     // 未认证
     if (code === 401) {
         // 展示重新登陆逻辑
-        // if (loginDialog) {
-        //     loginDialog = false
-        //     ElMessageBox.confirm('登录状态已过期，是否选择重新登录', '提示', {
-        //         confirmButtonText: '重新登录', cancelButtonText: '取消', type: 'warning'
-        //     }).then(() => {
-        //         location.href = '/login';
-        //     }).catch(() => {
-        //         loginDialog = true
-        //     });
-        //     return Promise.reject('请重新登录。')
-        // }
+        if (loginDialog) {
+            loginDialog = false
+            ElMessageBox.confirm('登录状态已过期，是否选择重新登录', '提示', {
+                confirmButtonText: '重新登录', cancelButtonText: '取消', type: 'warning'
+            }).then(() => {
+                location.href = '/';
+            }).catch(() => {
+                loginDialog = true
+            });
+            return Promise.reject('请重新登录。')
+        }
     } else if (code === 500) {
-        // ElMessage.error(msg)
+        ElMessage.error(msg)
         return Promise.reject(new Error(msg))
     } else if (code !== 200) {
-        // ElMessage.error(msg)
+        ElMessage.error(msg)
         return Promise.reject('error')
     } else {
         return res.data
