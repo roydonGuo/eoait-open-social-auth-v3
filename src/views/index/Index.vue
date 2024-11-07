@@ -16,6 +16,7 @@ const loadPlatformList = async () => {
 onMounted(() => {
   loadPlatformList()
 })
+
 </script>
 
 <template>

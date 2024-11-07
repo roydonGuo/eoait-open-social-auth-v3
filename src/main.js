@@ -11,8 +11,6 @@ import "./tailwind.css";
 
 import router from '@/router/index'
 
-// import '@/api/interceptor'
-
 const app = createApp(App)
 
 app.use(ElementPlus, {locale: zhLocale})

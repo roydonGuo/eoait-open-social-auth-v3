@@ -1,9 +1,9 @@
-import request from './request';
+import request from '@/api/interceptor';
 
-export const openAuth = () => {
-    return request.get('/open/auth')
+export async function openAuth() {
+    return await request.get('/open/auth')
 }
 
-export const openAuthPlatformList = () => {
-    return request.get('/oauth/openAuthPlatformList')
+export async function openAuthPlatformList() {
+    return await request.get('/oauth/openAuthPlatformList')
 }

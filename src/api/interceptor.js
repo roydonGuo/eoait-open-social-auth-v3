@@ -11,11 +11,14 @@ const instance = axios.create({
 })
 
 // 添加请求拦截器
-instance.interceptors.request.use(config => {
+instance.interceptors.request.use(function (config) {
     // const token = getToken()
     // if (token) {
     //     config.headers.Authorization = 'Bearer ' + token
     // }
+
+    config.headers.Authorization = 'Bearer ' + "111"
+
     return config;
 }, error => {
     return Promise.reject(error);
@@ -24,16 +27,17 @@ instance.interceptors.request.use(config => {
 let loginDialog = true
 
 // 添加响应拦截器
-instance.interceptors.response.use(res => {
+instance.interceptors.response.use(function (res) {
     // 未设置状态码则默认成功状态
     const code = res.data.code
-    ElMessage.error(res)
+    // ElMessage.error(code)
+    console.log(res.data.data)
     // 获取错误信息
     // const msg = errorCode[code] || res.data.msg || errorCode['default']
     // 二进制数据则直接返回
-    if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer') {
-        return res.data
-    }
+    // if (res.request.responseType === 'blob' || res.request.responseType === 'arraybuffer') {
+    //     return res.data
+    // }
     // 未认证
     if (code === 401) {
         // 展示重新登陆逻辑
