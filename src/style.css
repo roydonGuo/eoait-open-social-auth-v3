@@ -6,7 +6,7 @@ html, body, #app {
     padding: 0;
 }
 
-*{
+* {
     box-sizing: border-box;
 }
 
@@ -26,10 +26,14 @@ html, body, #app {
     text-overflow: ellipsis; /* 用省略号(...)隐藏超出的内容 。 */
 }
 
+ul > li {
+    list-style: none;
+}
+
 .el-card {
     --el-card-border-radius: 12px !important;
 }
 
 :root {
-    --el-box-shadow-light: 0px 0px 1px rgba(0, 0, 0, 0.12) !important;
+    --el-box-shadow-light: 0px 0px 1px rgba(0, 0, 0, 0.1) !important;
 }

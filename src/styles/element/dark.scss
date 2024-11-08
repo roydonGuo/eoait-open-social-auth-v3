@@ -2,10 +2,15 @@
 
 $--colors: (
   "primary": (
-    "base": #589ef8,
+    "base": #368dff,
   ),
 );
 
 @forward "element-plus/theme-chalk/src/dark/var.scss" with (
   $colors: $--colors
 );
+
+/* 自定义暗黑模式样式 */
+html.dark {
+  //background: #589ef8;
+}

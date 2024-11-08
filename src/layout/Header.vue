@@ -3,23 +3,24 @@ const menus = [
   {
     id: 0,
     name: "首页",
-    link: "/"
+    link: "/",
+    icon: "House"
   },
   {
     id: 1,
     name: "认证信息",
-    link: "auth"
+    link: "auth",
+    icon: "User"
   }
 ]
-import {Sunny, Moon} from "@element-plus/icons-vue";
+import {ref} from "vue";
+import {Sunny, Moon, House, User} from "@element-plus/icons-vue";
 import {useDark, useToggle} from "@vueuse/core";
 
-const props = defineProps({
-  msg: String,
-});
 const isDark = useDark();
 
 const toggleDark = useToggle(isDark);
+
 </script>
 
 <template>
@@ -30,9 +31,22 @@ const toggleDark = useToggle(isDark);
       </el-col>
       <el-col :span="16">
         <div class="w-full h-full flex ">
-          <div class="flex items-center" v-for="item in menus">
-            <router-link :to="item.link">{{ item.name }}</router-link>
-          </div>
+          <!--          <div class="flex items-center" v-for="item in menus">-->
+          <!--            <router-link :to="item.link">{{ item.name }}</router-link>-->
+          <!--          </div>-->
+          <router-link class="router-link"
+                       v-for="item in menus"
+                       :key="item.id"
+                       tag="div"
+                       exact
+                       :to="item.link">
+            <div class="w-full h-full flex justify-center items-center">
+              <el-icon :size="20">
+                <component :is="item.icon"></component>
+              </el-icon>
+              <span class="ml-1">{{ item.name }}</span>
+            </div>
+          </router-link>
         </div>
       </el-col>
       <el-col :span="4">
@@ -42,7 +56,6 @@ const toggleDark = useToggle(isDark);
                 :src="'https://niuyin-server.oss-cn-shenzhen.aliyuncs.com/member/2024/10/07/4eb4963fa6bb4f85aa0ba1f748978993.jpeg'"
                 alt="avatar" class="shadow-md size-10 rounded-full"/>
             <span class="text-sm flex ml-2" style="align-items: center;"> 昵称 </span>
-
           </div>
           <el-switch
               v-model="isDark"
@@ -58,5 +71,15 @@ const toggleDark = useToggle(isDark);
 </template>
 
 <style scoped>
+.router-link {
+  text-decoration: none;
+}
+
+.router-link-exact-active {
+  backdrop-filter: blur(10px);
+  background-color: #f4f4f4;
+  font-weight: 600;
+}
+
 
 </style>

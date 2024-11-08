@@ -25,7 +25,26 @@ const handleSelect = async (item) => {
   }
 }
 
+/**
+ * 加载路径参数
+ * 路径参数：token => 登录token
+ * http://localhost:5173/?token=111
+ */
+const loadLocationQuery = () => {
+  const query = window.location.search.substring(1)
+  if (query) {
+    const params = new URLSearchParams(query)
+    const token = params.get('token')
+    if (token) {
+      console.log("token" + token)
+      // 存储token
+      localStorage.setItem('token', token)
+    }
+  }
+}
+
 onMounted(() => {
+  loadLocationQuery()
   loadPlatformList()
 })
 
@@ -46,7 +65,9 @@ onMounted(() => {
                         :fit="'cover'">
                 <template #error>
                   <div class="image-slot">
-                    <el-icon><Picture /></el-icon>
+                    <el-icon>
+                      <Picture/>
+                    </el-icon>
                   </div>
                 </template>
               </el-image>
