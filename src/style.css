@@ -33,7 +33,3 @@ ul > li {
 .el-card {
     --el-card-border-radius: 12px !important;
 }
-
-:root {
-    --el-box-shadow-light: 0px 0px 1px rgba(0, 0, 0, 0.1) !important;
-}

@@ -1,9 +1,9 @@
 // only scss variables
 
 $--colors: (
-  "primary": (
-    "base": #368dff,
-  ),
+        "primary": (
+                "base": #368dff,
+        ),
 );
 
 @forward "element-plus/theme-chalk/src/dark/var.scss" with (
@@ -13,4 +13,8 @@ $--colors: (
 /* 自定义暗黑模式样式 */
 html.dark {
   //background: #589ef8;
+}
+
+:root.dark {
+  --eoait-bg-primary: #1d1e1f
 }

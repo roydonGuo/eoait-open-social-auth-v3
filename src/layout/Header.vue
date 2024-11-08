@@ -30,7 +30,7 @@ const toggleDark = useToggle(isDark);
         logo
       </el-col>
       <el-col :span="16">
-        <div class="w-full h-full flex ">
+        <div class="flex items-center h-full">
           <!--          <div class="flex items-center" v-for="item in menus">-->
           <!--            <router-link :to="item.link">{{ item.name }}</router-link>-->
           <!--          </div>-->
@@ -55,7 +55,7 @@ const toggleDark = useToggle(isDark);
             <img
                 :src="'https://niuyin-server.oss-cn-shenzhen.aliyuncs.com/member/2024/10/07/4eb4963fa6bb4f85aa0ba1f748978993.jpeg'"
                 alt="avatar" class="shadow-md size-10 rounded-full"/>
-            <span class="text-sm flex ml-2" style="align-items: center;"> 昵称 </span>
+            <span class="text-sm flex ml-2 items-center font-semibold"> roydon </span>
           </div>
           <el-switch
               v-model="isDark"
@@ -73,13 +73,12 @@ const toggleDark = useToggle(isDark);
 <style scoped>
 .router-link {
   text-decoration: none;
+  padding: .5rem 1rem;
+  border-radius: .75rem;
 }
 
 .router-link-exact-active {
-  backdrop-filter: blur(10px);
-  background-color: #f4f4f4;
+  background-color: var(--eoait-bg-primary);
   font-weight: 600;
 }
-
-
 </style>
