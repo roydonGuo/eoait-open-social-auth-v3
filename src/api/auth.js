@@ -7,3 +7,11 @@ export async function openAuth() {
 export async function openAuthPlatformList() {
     return await request.get('/oauth/openAuthPlatformList')
 }
+
+export async function renderAuthLink(source) {
+    return await request.get('/oauth/render/' + source)
+}
+
+export async function getOauthUsers() {
+    return await request.get('/oauth/users')
+}

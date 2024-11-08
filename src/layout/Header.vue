@@ -11,6 +11,15 @@ const menus = [
     link: "auth"
   }
 ]
+import {Sunny, Moon} from "@element-plus/icons-vue";
+import {useDark, useToggle} from "@vueuse/core";
+
+const props = defineProps({
+  msg: String,
+});
+const isDark = useDark();
+
+const toggleDark = useToggle(isDark);
 </script>
 
 <template>
@@ -27,7 +36,22 @@ const menus = [
         </div>
       </el-col>
       <el-col :span="4">
-        login-user
+        <div class="w-full h-full flex justify-start items-center">
+          <div class="w-full h-full flex justify-start items-center">
+            <img
+                :src="'https://niuyin-server.oss-cn-shenzhen.aliyuncs.com/member/2024/10/07/4eb4963fa6bb4f85aa0ba1f748978993.jpeg'"
+                alt="avatar" class="shadow-md size-10 rounded-full"/>
+            <span class="text-sm flex ml-2" style="align-items: center;"> 昵称 </span>
+
+          </div>
+          <el-switch
+              v-model="isDark"
+              :active-icon="Moon"
+              :inactive-icon="Sunny"
+              inline-prompt
+              @change="toggleDark"
+          />
+        </div>
       </el-col>
     </el-row>
   </el-header>
