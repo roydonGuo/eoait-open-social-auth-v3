@@ -14,7 +14,7 @@ const menus = [
   }
 ]
 import {ref} from "vue";
-import {Sunny, Moon, House, User} from "@element-plus/icons-vue";
+import {Sunny, Moon, Picture} from "@element-plus/icons-vue";
 import {useDark, useToggle} from "@vueuse/core";
 
 const isDark = useDark();
@@ -24,10 +24,13 @@ const toggleDark = useToggle(isDark);
 </script>
 
 <template>
-  <el-header class="shadow">
+  <el-header class="header-container">
     <el-row class="w-full h-full" :gutter="20">
       <el-col :span="4">
-        logo
+        <div class="h-full flex items-center justify-center">
+          <img style="width: 24px; height: 24px"
+               src="@/assets/logo.png" alt="eoait"/>
+        </div>
       </el-col>
       <el-col :span="16">
         <div class="flex items-center h-full">
@@ -71,6 +74,14 @@ const toggleDark = useToggle(isDark);
 </template>
 
 <style scoped>
+.header-container {
+  box-shadow: 0 2px 6px -2px rgb(0 0 0 / 0.1), 0 0 4px -2px rgb(0 0 0 / 0.1);
+}
+
+.dark .header-container {
+  box-shadow: 0 2px 6px -2px rgba(188, 185, 185, 0.1), 0 0 4px -2px rgba(32, 31, 31, 0.1);
+}
+
 .router-link {
   text-decoration: none;
   padding: .5rem 1rem;

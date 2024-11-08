@@ -33,3 +33,8 @@ ul > li {
 .el-card {
     --el-card-border-radius: 12px !important;
 }
+
+.el-main {
+    --el-main-padding: 0 1rem !important;
+    padding-top: 1rem;
+}

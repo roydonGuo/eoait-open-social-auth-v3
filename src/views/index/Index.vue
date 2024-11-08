@@ -54,7 +54,7 @@ onMounted(() => {
   <el-scrollbar>
       <!--    三方开放平台 -->
       <el-row :gutter="20" class="w-full">
-        <el-col :span="3" v-for="item in platformList" class="mb-4" @click="handleSelect(item)">
+        <el-col :span="3" v-for="item in platformList" class="mt-4" @click="handleSelect(item)">
           <el-card
               class="cursor-pointer hover:shadow-lg transition ease-in-out duration-300 hover:text-blue-500 hover:bg-blue-50">
             <template #header>

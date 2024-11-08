@@ -37,7 +37,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-card class="mb-4 hover:shadow-lg transition ease-in-out duration-300 hover:text-blue-500 hover:bg-blue-50"
+  <el-scrollbar>
+  <el-card class="mt-4 hover:shadow-lg transition ease-in-out duration-300 hover:text-blue-500 hover:bg-blue-50"
            v-for="item in users">
     <template #header>
       <div class="card-header flex items-center">
@@ -77,6 +78,7 @@ onMounted(() => {
       </div>
     </div>
   </el-card>
+  </el-scrollbar>
   <el-dialog :title="dialogTitle" v-model="dialogVisible">
     <div class="text item">
 <!--      {{ item }}-->
