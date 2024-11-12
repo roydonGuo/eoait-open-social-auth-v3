@@ -1,8 +1,11 @@
 <script setup>
-import {ref, onMounted} from "vue";
+import {onMounted, ref} from "vue";
 import {openAuthPlatformList, renderAuthLink} from "@/api/auth.js";
 import {Picture} from "@element-plus/icons-vue";
 import {ElMessage} from 'element-plus'
+import {useRouter} from "vue-router";
+
+const router = useRouter();
 
 const platformList = ref([])
 
@@ -44,6 +47,8 @@ const loadLocationQuery = () => {
       console.log("token" + data)
       // 存储token
       localStorage.setItem('token', data)
+      // todo token 存储 pinia
+      router.push({path: '/'})
       ElMessage({
         message: '登录成功',
         type: 'success',
