@@ -54,7 +54,7 @@ const loadLocationQuery = () => {
         type: 'success',
       })
     } else if (code === '401') {
-      // 未认证
+      // 未认证|社交账号未绑定用户
       ElMessage({
         message: msg,
         type: 'error',
