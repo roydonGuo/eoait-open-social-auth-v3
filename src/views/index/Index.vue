@@ -1,6 +1,6 @@
 <script setup>
 import {onMounted, ref} from "vue";
-import {openAuthPlatformList, renderAuthLink} from "@/api/auth.js";
+import {bindSocialUser, openAuthPlatformList, renderAuthLink} from "@/api/auth.js";
 import {Picture} from "@element-plus/icons-vue";
 import {ElMessage} from 'element-plus'
 import {useRouter} from "vue-router";
@@ -34,7 +34,7 @@ const handleSelect = async (item) => {
  * 路径参数：token => 登录token
  * http://localhost:5173/?token=111
  */
-const loadLocationQuery = () => {
+const loadLocationQuery = async () => {
   const query = window.location.search.substring(1)
   if (query) {
     const params = new URLSearchParams(query)
@@ -55,6 +55,26 @@ const loadLocationQuery = () => {
       })
     } else if (code === '401') {
       // 未认证|社交账号未绑定用户
+      if (true) {
+        // todo 实际上将 if 逻辑的true改为如果已经登录则调用绑定用户接口
+        const bindData = {
+          socialUserId: data,
+          bind: true
+        }
+        const res = await bindSocialUser(bindData)
+        if (res.data.code === 200) {
+          ElMessage({
+            message: "绑定成功",
+            type: 'success',
+          })
+          // todo pinia存储来源path 绑定成功之后跳转到 来源页面
+        } else {
+          ElMessage({
+            message: res.data.msg,
+            type: 'error',
+          })
+        }
+      }
       ElMessage({
         message: msg,
         type: 'error',
@@ -71,7 +91,7 @@ const loadLocationQuery = () => {
 
 onMounted(() => {
   loadLocationQuery()
-  loadPlatformList()
+  // loadPlatformList()
 })
 
 </script>

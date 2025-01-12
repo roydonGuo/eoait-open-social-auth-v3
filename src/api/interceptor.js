@@ -17,7 +17,8 @@ instance.interceptors.request.use(config => {
     //     config.headers.Authorization = 'Bearer ' + token
     // }
 
-    config.headers.Authorization = 'Bearer ' + "111"
+    config.headers.Authorization = 'Bearer ' + "eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImE4ZmNjYzUwLWM0ZjUtNDY5Ni1iMDMzLTk1NDY5MjMzZDBmYiJ9.OOQp3q2H3WpWC-eXHEiWxQ9oNP12LgHBRQcjzTgr5H_p-vow4aKINk0NgWSckbooYLQnvV1eAaCh7R-Wccm0mQ"
+    config.headers.terrace = 'terrace'
 
     return config
 }, error => {
@@ -51,8 +52,8 @@ instance.interceptors.response.use(res => {
             return Promise.reject('请重新登录。')
         }
     } else if (code === 500) {
-        ElMessage.error("系统错误")
-        return Promise.reject(new Error("系统错误"))
+        // ElMessage.error("系统错误")
+        return Promise.reject(res.data.msg)
     } else if (code !== 200) {
         ElMessage.error("业务异常")
         return Promise.reject('error')

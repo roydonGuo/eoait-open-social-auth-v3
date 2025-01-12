@@ -15,3 +15,7 @@ export async function renderAuthLink(source) {
 export async function getOauthUsers() {
     return await request.get('/oauth/users')
 }
+
+export async function bindSocialUser(data) {
+    return await request.post('/oauth/bind', data)
+}
